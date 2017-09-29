@@ -1,0 +1,27 @@
+{
+  "name": "clould-api",
+  "version": "1.0.0",
+  "description": "Cloud API template for my projects",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"skip tests\"",
+    "start:dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itleo31/cloud-api-auth.git"
+  },
+  "keywords": [
+    "ExpressJS",
+    "OAuth",
+    "JWT",
+    "TwillioChat"
+  ],
+  "author": "khanh.phamdd@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/itleo31/cloud-api-auth/issues"
+  },
+  "homepage": "https://github.com/itleo31/cloud-api-auth#readme"
+}
