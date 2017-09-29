@@ -7,13 +7,18 @@
     "build": "babel src/ -d dist/",
     "start": "node dist/index.js",
     "test": "echo \"skip tests\"",
-    "start:dev": "nodemon index.js --exec babel-node"
+    "start:dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/itleo31/cloud-api-auth.git"
   },
-  "keywords": ["ExpressJS", "OAuth", "JWT", "TwillioChat"],
+  "keywords": [
+    "ExpressJS",
+    "OAuth",
+    "JWT",
+    "TwillioChat"
+  ],
   "author": "khanh.phamdd@gmail.com",
   "license": "ISC",
   "bugs": {
@@ -31,5 +36,11 @@
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.4.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "debug": "^3.1.0",
+    "express": "^4.16.0",
+    "morgan": "^1.9.0"
+  }
 }
