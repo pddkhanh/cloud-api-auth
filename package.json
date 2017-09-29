@@ -4,24 +4,32 @@
   "description": "Cloud API template for my projects",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "build": "babel src/ -d dist/",
+    "start": "node dist/index.js",
     "test": "echo \"skip tests\"",
-    "start:dev": "nodemon index.js"
+    "start:dev": "nodemon index.js --exec babel-node"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/itleo31/cloud-api-auth.git"
   },
-  "keywords": [
-    "ExpressJS",
-    "OAuth",
-    "JWT",
-    "TwillioChat"
-  ],
+  "keywords": ["ExpressJS", "OAuth", "JWT", "TwillioChat"],
   "author": "khanh.phamdd@gmail.com",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/itleo31/cloud-api-auth/issues"
   },
-  "homepage": "https://github.com/itleo31/cloud-api-auth#readme"
+  "homepage": "https://github.com/itleo31/cloud-api-auth#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.0.1",
+    "babel-preset-flow": "^6.23.0",
+    "eslint": "^4.7.2",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "flow-bin": "^0.56.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.4.0"
+  },
+  "dependencies": {}
 }
