@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel src/ -d dist/",
     "start": "node dist/index.js",
-    "test": "echo \"skip tests\"",
+    "test": "mocha",
     "start:dev": "nodemon index.js"
   },
   "repository": {
@@ -29,18 +29,28 @@
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.1",
     "babel-preset-flow": "^6.23.0",
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
     "eslint": "^4.7.2",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",
-    "flow-bin": "^0.56.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-react": "^7.4.0"
+    "eslint-plugin-mocha": "^4.11.0",
+    "eslint-plugin-react": "^7.4.0",
+    "flow-bin": "^0.56.0",
+    "mocha": "^3.5.3"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
+    "chalk": "^2.1.0",
+    "config": "^1.26.2",
     "cookie-parser": "^1.4.3",
     "debug": "^3.1.0",
     "express": "^4.16.0",
-    "morgan": "^1.9.0"
+    "glob": "^7.1.2",
+    "lodash": "^4.17.4",
+    "mongoose": "^4.11.13",
+    "morgan": "^1.9.0",
+    "validator": "^9.0.0"
   }
 }

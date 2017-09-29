@@ -1,0 +1,24 @@
+{
+  "env": {
+    "es6": true,
+    "mocha": true
+  },
+  "extends": ["airbnb"],
+  "parser": "babel-eslint",
+  "plugins": [
+    "mocha"
+  ],
+  "rules": {
+    "semi": "off",
+    "no-console": "off",
+    "prefer-template": "off",
+    "arrow-parens": "off",
+    "arrow-body-style": "off",
+    "no-underscore-dangle": "off",
+    "no-restricted-syntax": "off",
+    "prefer-arrow-callback": "off",
+    "func-names": "off",
+    "space-before-function-paren": "off",
+    "no-unused-expressions": "off"
+  }
+}
