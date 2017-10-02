@@ -72,7 +72,7 @@ const UserSchema = new Schema({
 /**
 * Hook a pre save method to hash the password
 */
-UserSchema.pre('save', next => {
+UserSchema.pre('save', function(next) {
   if (this.password && this.isModified('password')) {
     this.salt = crypto.randomBytes(16).toString('base64')
     this.password = this.hashPassword(this.password)
@@ -84,7 +84,7 @@ UserSchema.pre('save', next => {
 /**
 * Create instance method for hashing a password
 */
-UserSchema.methods.hashPassword = password => {
+UserSchema.methods.hashPassword = function(password) {
   if (this.salt && password) {
     return crypto
       .pbkdf2Sync(password, new Buffer(this.salt, 'base64'), 10000, 64, 'SHA1')
@@ -96,7 +96,7 @@ UserSchema.methods.hashPassword = password => {
 /**
 * Create instance method for authenticating user
 */
-UserSchema.methods.authenticate = password => {
+UserSchema.methods.authenticate = function(password) {
   return this.password === this.hashPassword(password)
 }
 
