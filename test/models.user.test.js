@@ -49,6 +49,33 @@ describe('User model', () => {
       })
     })
 
+    it('should failed when email is invalid', done => {
+      const user = new User(user1)
+      user.email = 'invalidemail'
+      user.save((err, rs) => {
+        expect(err).exist
+        done()
+      })
+    })
+
+    it('should failed when email is empty', done => {
+      const user = new User(user1)
+      user.email = ''
+      user.save((err, rs) => {
+        expect(err).exist
+        done()
+      })
+    })
+
+    it('should failed when password is empty', done => {
+      const user = new User(user1)
+      user.password = ''
+      user.save((err, res) => {
+        expect(err).exist
+        done()
+      })
+    })
+
     it('should fail to save exist user again', done => {
       const user = new User(user1)
       const sameUser = new User(user1)

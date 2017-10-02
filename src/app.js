@@ -4,6 +4,7 @@ const path = require('path')
 const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
+const util = require('./components/util')
 
 const app = express()
 
@@ -22,16 +23,16 @@ app.use(cookieParser())
 
 app.use(express.static(path.join(__dirname, '../public')))
 
-app.use('/', (req, res) => {
-  res.send('Hello World')
-})
-
 // var index = require('./routes/index');
 // app.use('/', index);
 
-// util.getGlobbedPaths('./routes/client/**/*.js').forEach(function(file) {
-//   app.use('/api', require(path.resolve(file)))
-// })
+util.getGlobbedPaths('./src/routes/**/*.js').forEach(function(file) {
+  app.use('/api', require(path.resolve(file))) // eslint-disable-line
+})
+
+app.use('/', (req, res) => {
+  res.send('OK')
+})
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

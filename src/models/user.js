@@ -7,9 +7,12 @@ const Schema = mongoose.Schema
 /**
 * A Validation function for local strategy email
 */
-const validateLocalStrategyEmail = email =>
-  (this.provider !== 'local' && !this.updated) ||
-  validator.isEmail(email, { require_tld: false })
+const validateLocalStrategyEmail = function(email) {
+  return (
+    (this.provider !== 'local' && !this.updated) ||
+    validator.isEmail(email, { require_tld: false })
+  )
+}
 
 /**
 * User Schema
@@ -34,7 +37,7 @@ const UserSchema = new Schema({
     lowercase: true,
     trim: true,
     default: '',
-    validate: [validateLocalStrategyEmail, 'Please fill a valid email address'],
+    validate: [validateLocalStrategyEmail, 'Email address is invalid'],
   },
   password: {
     type: String,
@@ -76,6 +79,23 @@ UserSchema.pre('save', function(next) {
   if (this.password && this.isModified('password')) {
     this.salt = crypto.randomBytes(16).toString('base64')
     this.password = this.hashPassword(this.password)
+  }
+
+  next()
+})
+
+/**
+ * Hook a pre validate method to test the local password
+ */
+UserSchema.pre('validate', function(next) {
+  if (
+    this.provider === 'local' &&
+    // this.password &&
+    this.isModified('password')
+  ) {
+    if (this.password.length === 0) {
+      this.invalidate('password', 'Password is required')
+    }
   }
 
   next()
