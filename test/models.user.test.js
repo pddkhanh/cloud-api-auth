@@ -154,6 +154,38 @@ describe('User model', () => {
         done()
       })
     })
+
+    it('should has unique twilioIdentity', done => {
+      const dbUser1 = new User(user1)
+      const dbUser2 = new User(user2)
+      dbUser1.save((err, saved1) => {
+        expect(err).not.exist
+        expect(saved1.twilioIdentity).not.empty
+        dbUser2.save((err2, saved2) => {
+          expect(err2).not.exist
+          expect(saved2.twilioIdentity).not.empty
+          expect(saved2.twilioIdentity).not.equal(saved1.twilioIdentity)
+          done()
+        })
+      })
+    })
+
+    it('should confirm that saving user model does not change the twilioIdentity', done => {
+      const user = new User(user1)
+      user.save((err, savedUser) => {
+        expect(err).not.exist
+        expect(savedUser).exist
+        const oldIdentity = savedUser.twilioIdentity
+        savedUser.firstName = 'Updated'
+        savedUser.save((err, savedUser2) => {
+          expect(err).not.exist
+          expect(savedUser2).exist
+          expect(savedUser2.twilioIdentity).is.equal(oldIdentity)
+
+          done()
+        })
+      })
+    })
   })
 
   describe('user password authentication', () => {

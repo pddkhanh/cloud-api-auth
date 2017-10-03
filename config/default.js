@@ -1,12 +1,22 @@
 module.exports = {
+  app: {
+    name: 'CloudAPI',
+  },
   db: {
-    uri: 'mongodb://localhost:27017/cloud-api-dev',
+    uri: process.env.MONGO_URI,
     options: {
       useMongoClient: true,
     },
     debug: true,
   },
   jwt: {
-    secret: 'n$cJ2VT!ADewH03gRQD1',
+    secret: process.env.JWT_SECRET,
+  },
+  twilio: {
+    serviceSid: process.env.TWILIO_SERVICE_SID,
+    accountSid: process.env.TWILIO_ACCOUNT_SID,
+    authToken: process.env.TWILIO_AUTH_TOKEN,
+    apiSid: process.env.TWILIO_API_SID,
+    apiSecret: process.env.TWILIO_API_SECRET,
   },
 }

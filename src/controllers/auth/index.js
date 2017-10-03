@@ -15,7 +15,7 @@ exports.register = (req, res) => {
 
   if (_.isEmpty(user.email) || _.isEmpty(user.password)) {
     return res.status(400).send({
-      code: errorHandler.errorCodes.AUTH_CREDENTIAL_MISSING,
+      code: errorHandler.errorCodes.REQUEST_DATA_MISSING,
       message: 'Email and password are required',
     })
   }
@@ -38,7 +38,7 @@ exports.login = (req, res, next) => {
 
   if (_.isEmpty(email) || _.isEmpty(password)) {
     return res.status(400).send({
-      code: errorHandler.errorCodes.AUTH_CREDENTIAL_MISSING,
+      code: errorHandler.errorCodes.REQUEST_DATA_MISSING,
       message: 'Email and password are required',
     })
   }
@@ -74,7 +74,7 @@ exports.forgotPassword = (req, res, next) => {
 
   if (_.isEmpty(email) || !validator.isEmail(email, { require_tld: false })) {
     return res.status(400).send({
-      code: errorHandler.errorCodes.AUTH_CREDENTIAL_MISSING,
+      code: errorHandler.errorCodes.REQUEST_DATA_MISSING,
       message: 'Email is invalid',
     })
   }

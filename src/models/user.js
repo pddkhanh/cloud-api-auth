@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
 const crypto = require('crypto')
+const shortid = require('shortid')
+const _ = require('lodash')
 
 const Schema = mongoose.Schema
 
@@ -43,6 +45,13 @@ const UserSchema = new Schema({
     type: String,
     default: '',
   },
+  twilioIdentity: {
+    type: String,
+    index: {
+      unique: true,
+      sparse: true,
+    },
+  },
   salt: {
     type: String,
   },
@@ -81,7 +90,14 @@ UserSchema.pre('save', function(next) {
     this.password = this.hashPassword(this.password)
   }
 
-  next()
+  if (_.isEmpty(this.twilioIdentity)) {
+    this.constructor.findUniqueTwilioIdentity(identity => {
+      this.twilioIdentity = identity
+      next()
+    })
+  } else {
+    next()
+  }
 })
 
 /**
@@ -118,6 +134,31 @@ UserSchema.methods.hashPassword = function(password) {
 */
 UserSchema.methods.authenticate = function(password) {
   return this.password === this.hashPassword(password)
+}
+
+/**
+ * Find unique twilioIdentity
+ */
+UserSchema.statics.findUniqueTwilioIdentity = function(callback) {
+  const _this = this
+  const identity = shortid.generate().replace(/\-/g, '_')
+
+  _this.findOne(
+    {
+      twilioIdentity: identity,
+    },
+    function(err, user) {
+      if (!err) {
+        if (!user) {
+          callback(identity)
+        } else {
+          return _this.findUniqueTwilioIdentity(callback)
+        }
+      } else {
+        callback(null)
+      }
+    },
+  )
 }
 
 module.exports = mongoose.model('User', UserSchema)
