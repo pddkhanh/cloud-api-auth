@@ -180,7 +180,6 @@ describe('routes /auth', () => {
           expect(res).to.have.status(200)
           expect(res.body.access_token).exist
           const accessToken = res.body.access_token
-          console.log('sending access token: ', accessToken)
           chai
             .request(server)
             .post('/api/auth/verify_token')

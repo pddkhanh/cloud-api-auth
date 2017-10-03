@@ -26,6 +26,7 @@ module.exports.connect = function(cb) {
     if (err) {
       console.error(chalk.red('Could not connect to MongoDB!'))
       console.log(err)
+      cb(err)
     } else {
       // Enabling mongoose debug mode if required
       mongoose.set('debug', config.get('db.debug'))
