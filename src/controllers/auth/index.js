@@ -82,3 +82,7 @@ exports.forgotPassword = (req, res, next) => {
   // TODO: implement logic here
   res.sendStatus(200)
 }
+
+exports.verifyToken = (req, res, next) => {
+  res.sendStatus(200)
+}

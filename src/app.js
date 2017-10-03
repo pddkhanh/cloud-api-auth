@@ -4,6 +4,7 @@ const path = require('path')
 const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
+const passport = require('./components/passport')
 const util = require('./components/util')
 
 const app = express()
@@ -22,6 +23,8 @@ app.use(cookieParser())
 // require('./components/passport-config')(app)
 
 app.use(express.static(path.join(__dirname, '../public')))
+
+passport.config(app)
 
 // var index = require('./routes/index');
 // app.use('/', index);

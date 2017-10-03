@@ -154,6 +154,66 @@ describe('routes /auth', () => {
     })
   })
 
+  describe('POST /verify_token', () => {
+    beforeEach(done => {
+      const body = {
+        email: 'user@test.com',
+        password: 'password',
+      }
+      chai
+        .request(server)
+        .post('/api/auth/register')
+        .send(body)
+        .end(done)
+    })
+
+    it('should got 200 and token info if valid token', done => {
+      const body = {
+        email: 'user@test.com',
+        password: 'password',
+      }
+      chai
+        .request(server)
+        .post('/api/auth/login')
+        .send(body)
+        .end((err, res) => {
+          expect(res).to.have.status(200)
+          expect(res.body.access_token).exist
+          const accessToken = res.body.access_token
+          console.log('sending access token: ', accessToken)
+          chai
+            .request(server)
+            .post('/api/auth/verify_token')
+            .set('Authorization', 'Bearer ' + accessToken)
+            .end((err2, res2) => {
+              expect(res2).to.have.status(200)
+              done()
+            })
+        })
+    })
+
+    it('should got 401 when has no token', done => {
+      chai
+        .request(server)
+        .post('/api/auth/verify_token')
+        .end((err, res) => {
+          expect(res).to.have.status(401)
+          done()
+        })
+    })
+
+    it('should got 401 when post invalid token', done => {
+      chai
+        .request(server)
+        .post('/api/auth/verify_token')
+        .set('Authorization', 'invalid token')
+        .end((err, res) => {
+          expect(res).to.have.status(401)
+          done()
+        })
+    })
+  })
+
   afterEach(done => {
     User.remove().exec(done)
   })
