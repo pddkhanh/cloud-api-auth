@@ -1,4 +1,8 @@
 language: node_js
-node_js: 
-  - "node"
+node_js:
+- node
 services: mongodb
+deploy:
+  api_key:
+    secure: nfeR6P0lWvdFpBLvtAf5vRTRq0gU19WzmE5Qa33/4Xpl6xyHxAaD2g+S+7fz53UKyEDZGbrko1/8Q6UEYmYfNrTo3yAkV8gaEguVgIbjtgSsXwrxW2hxa2cVVchOR1HAffQFyaNNtm4+baTkg/6OmHqMNeY7K8Y3L0WbILIcHMByr1ZDvzq3h8SkRErOlT7hGr6l6L0VCbIGoV3dCdPgeUcL62hlAYMmLupeXWG2u+jzA3+TDiRyZnCO/utA72X8fXSKg0dCNiZtQNRwZqu+vMN5HF4FR+PrxVENVG+cnV5qgGEwW1ht/et1BS9JWVi7+EAyuYIsDv2tPXb9Sed+W4LR+Jexiw/yCxwSRyIduCU2Nyqf8M4DOSukwhblZBEi62iql/Ax/Hsy9eTBXVTY0ei2vQkLz9Ju37EkZbLIRh3D3CRzAS18NYNP7E/ae08132aEAKB4G8ew3edBBSAuZMwbehyXXid6fkWUn8CcIocujoZCkkjD/Y5gxLtEvwUoIwnHck0zk0BPUxfAVJRm0yY1+34gjTnUdFp2Nt2mLsmecKyXQZBFhymGCP8rF20vB2vkdCoxnGeMZxWfoL1lfun0QcBolTYNraI6TNnZqjZ8HA6t/9o14QxVBLQsij6dzQJpOM5Dw9ZhpPMHcqs+LMmAXm8IGD05/GC4by6V9CA=
+  app: cloud-api-template
