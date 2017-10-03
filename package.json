@@ -4,8 +4,7 @@
   "description": "Cloud API template for my projects",
   "main": "index.js",
   "scripts": {
-    "build": "babel src/ -d dist/",
-    "start": "node dist/index.js",
+    "start": "node index.js",
     "test": "mocha",
     "start:dev": "nodemon index.js"
   },
@@ -26,19 +25,10 @@
   },
   "homepage": "https://github.com/itleo31/cloud-api-auth#readme",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-eslint": "^8.0.1",
-    "babel-preset-flow": "^6.23.0",
     "chai": "^4.1.2",
     "chai-http": "^3.0.0",
-    "eslint": "^4.7.2",
-    "eslint-config-airbnb": "^15.1.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-mocha": "^4.11.0",
-    "eslint-plugin-react": "^7.4.0",
-    "flow-bin": "^0.56.0",
-    "mocha": "^3.5.3"
+    "mocha": "^3.5.3",
+    "prettier": "^1.7.3"
   },
   "dependencies": {
     "body-parser": "^1.18.2",

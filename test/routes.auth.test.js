@@ -127,6 +127,33 @@ describe('routes /auth', () => {
     })
   })
 
+  describe('POST /forgot_password', () => {
+    it('should return 201 with valid request body', done => {
+      const body = {
+        email: 'user@test.com',
+      }
+      chai
+        .request(server)
+        .post('/api/auth/forgot_password')
+        .send(body)
+        .end((err, res) => {
+          expect(res).to.have.status(200)
+          done()
+        })
+    })
+
+    it('should got 400 with empty request body', done => {
+      chai
+        .request(server)
+        .post('/api/auth/forgot_password')
+        .send({})
+        .end((err, res) => {
+          expect(res).to.have.status(400)
+          done()
+        })
+    })
+  })
+
   afterEach(done => {
     User.remove().exec(done)
   })

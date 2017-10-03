@@ -1,6 +1,4 @@
 {
   "editor.formatOnSave": true,
-  "javascript.format.enable": false,
-  "flow.useNPMPackagedFlow": true,
-  "editor.tabSize": 2,
+  "editor.tabSize": 2
 }

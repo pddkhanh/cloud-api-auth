@@ -6,5 +6,6 @@ const authCtrl = require('../controllers/auth')
 
 router.post('/auth/register', authCtrl.register)
 router.post('/auth/login', authCtrl.login)
+router.post('/auth/forgot_password', authCtrl.forgotPassword)
 
 module.exports = router

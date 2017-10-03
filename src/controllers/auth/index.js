@@ -4,6 +4,7 @@ const passport = require('passport')
 const jwt = require('jsonwebtoken')
 const config = require('config')
 const _ = require('lodash')
+const validator = require('validator')
 
 const User = require('../../models/user')
 const errorHandler = require('./../core/error')
@@ -66,4 +67,18 @@ exports.login = (req, res, next) => {
       })
     },
   )
+}
+
+exports.forgotPassword = (req, res, next) => {
+  const email = req.body.email
+
+  if (_.isEmpty(email) || !validator.isEmail(email, { require_tld: false })) {
+    return res.status(400).send({
+      code: errorHandler.errorCodes.AUTH_CREDENTIAL_MISSING,
+      message: 'Email is invalid',
+    })
+  }
+
+  // TODO: implement logic here
+  res.sendStatus(200)
 }
