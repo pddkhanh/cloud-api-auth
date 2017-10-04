@@ -2,7 +2,6 @@ language: node_js
 node_js:
 - 8.6.0
 before_script:
-  - sudo service mongod stop
   - sudo apt-get purge mongodb-org*
   - sudo rm -r /var/log/mongodb
   - sudo rm -r /var/lib/mongodb
