@@ -8,6 +8,9 @@ addons:
     packages:
       - mongodb-org
 services: mongodb
+before_script:
+  - echo "Mongo DB"
+  - mongod --version
 deploy:
   provider: heroku
   api_key:
