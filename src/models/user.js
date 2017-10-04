@@ -32,10 +32,6 @@ const UserSchema = new Schema({
   },
   email: {
     type: String,
-    index: {
-      unique: true,
-      sparse: true,
-    },
     lowercase: true,
     trim: true,
     default: '',
@@ -47,10 +43,6 @@ const UserSchema = new Schema({
   },
   twilioIdentity: {
     type: String,
-    index: {
-      unique: true,
-      sparse: true,
-    },
   },
   salt: {
     type: String,
@@ -80,6 +72,26 @@ const UserSchema = new Schema({
     type: Date,
   },
 })
+
+UserSchema.index(
+  { email: 1 },
+  {
+    unique: true,
+    partialFilterExpression: {
+      email: { $exists: true },
+    },
+  },
+)
+
+UserSchema.index(
+  { twilioIdentity: 1 },
+  {
+    unique: true,
+    partialFilterExpression: {
+      twilioIdentity: { $exists: true },
+    },
+  },
+)
 
 /**
 * Hook a pre save method to hash the password

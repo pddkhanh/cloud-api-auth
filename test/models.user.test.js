@@ -170,6 +170,40 @@ describe('User model', () => {
       })
     })
 
+    it('should not able to save 2 users with same twilioIdentity', done => {
+      const dbUser1 = new User(user1)
+      const dbUser2 = new User(user2)
+      dbUser1.save((err, saved1) => {
+        expect(err).not.exist
+        expect(saved1.twilioIdentity).not.empty
+        dbUser2.save((err2, saved2) => {
+          expect(err2).not.exist
+          expect(saved2.twilioIdentity).not.empty
+          expect(saved2.twilioIdentity).not.equal(saved1.twilioIdentity)
+
+          saved2.twilioIdentity = saved1.twilioIdentity
+          saved2.save(err3 => {
+            expect(err3).exist
+            done()
+          })
+        })
+      })
+    })
+
+    it('should not index missing twilioIdentity field, thus not enfore the model unique index', done => {
+      const dbUser1 = new User(user1)
+      const dbUser2 = new User(user2)
+      dbUser1.twilioIdentity = undefined
+      dbUser2.twilioIdentity = undefined
+      dbUser1.save(err => {
+        expect(err).not.exist
+        dbUser2.save(err2 => {
+          expect(err2).not.exist
+          done()
+        })
+      })
+    })
+
     it('should confirm that saving user model does not change the twilioIdentity', done => {
       const user = new User(user1)
       user.save((err, savedUser) => {
