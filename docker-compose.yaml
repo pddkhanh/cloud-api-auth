@@ -11,12 +11,12 @@ services:
     links:
       - mongo
     entrypoint:
-      - npm
+      - yarn
       - run
       - "start:dev"
   
   mongo:
-    image: mongo
+    image: mongo:3.4.9
     ports:
       - "27017:27017"
     volumes:
