@@ -11,7 +11,6 @@ before_script:
   - sudo apt-get install -y mongodb-org=3.4.9
   - sleep 10 # wait
   - mongod --version
-  - sudo service mongod start
 deploy:
   provider: heroku
   api_key:
