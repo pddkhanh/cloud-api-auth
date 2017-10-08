@@ -27,7 +27,9 @@ exports.register = (req, res) => {
         message: errorHandler.getErrorMessage(err),
       })
     } else {
-      res.sendStatus(201)
+      res.status(201).send({
+        result: 'success',
+      })
     }
   })
 }
